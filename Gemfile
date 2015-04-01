@@ -27,3 +27,17 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+#for rails console
+gem "pry-rails"
+gem "awesome_print", :require => false
+
+group :development, :test do
+  gem "pry-plus"
+  gem "hirb", :require => false
+  gem "hirb-unicode", :require => false
+end
+
+group :development do
+  gem "pry-remote"
+end

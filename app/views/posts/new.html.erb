@@ -1,0 +1,7 @@
+<%= render 'shared/content_title', title: 'New Post' %>
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br>
+  <%= f.submit class: 'btn btn-primary'%>
+<% end %>
