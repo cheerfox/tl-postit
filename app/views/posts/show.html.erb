@@ -7,6 +7,31 @@
 </p>
 <%= render 'shared/content_title', title: @post.title %>
 <%= @post.description %>
+<hr>
+<div class="row">
+  <div class="span8">
+    <%= render 'shared/errors', object: @comment %>
+    <%= form_for [@post, @comment] do |f| %>
+      <div class="controll-group">
+        <%= f.label :body, 'Leave a Comment' %> 
+        <%= f.text_area :body, rows: 5 %>
+      </div>
+      <%= f.submit class: 'btn btn-primary' %>
+    <% end %> 
+  </div>
+</div>
 
-<%= form_for [@post, @comment] do |f| %>
-<% end %>
+<div class="row">
+  <div class="span8">
+    <h5>Comments</h5>
+    <% @post.comments.each do |comment| %>
+      <div class="well span8">
+        <em>"<%= comment.body %>"</em>
+        <p>
+          <span class="quiet"> by </span> <%= comment.creator.username %>
+          <small>create at <%= comment.created_at %></small>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
