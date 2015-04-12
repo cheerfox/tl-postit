@@ -29,7 +29,7 @@
         <em>"<%= comment.body %>"</em>
         <p>
           <span class="quiet"> by </span> <%= comment.creator.username %>
-          <small>create at <%= comment.created_at %></small>
+          <small>create at <%= display_datetime(comment.created_at) %></small>
         </p>
       </div>
     <% end %>
