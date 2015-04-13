@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_user, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :requrie_same_user, only: [:edit, :update]
 
   def new
     @user = User.new
@@ -38,7 +39,14 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = current_user
+    @user = User.find(params[:id])
+  end
+
+  def requrie_same_user
+    if @user != current_user
+      flash[:error] = "You can't do this"
+      redirect_to root_path
+    end
   end
 
 end

@@ -1,0 +1,15 @@
+<% show_which_post ||= false %>
+<div class="row">
+  <div class="span8">
+    <div class="well span8">
+      <em>"<%= comment.body %>"</em>
+      <% if show_which_post %>
+        on <%= link_to comment.post.title, post_path(comment.post) %>
+      <% end %>
+      <p>
+        <span class="quiet"> by </span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+        <small>create at <%= display_datetime(comment.created_at) %></small>
+      </p>
+    </div>
+  </div>
+</div>
