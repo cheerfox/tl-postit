@@ -1,6 +1,9 @@
-<p class="pull-right">
-  [<%= link_to 'Edit this Post', edit_post_path(@post) %>]
-</p>
+<% if logged_in? %>
+  <p class="pull-right">
+    [<%= link_to 'Edit this Post', edit_post_path(@post) %>]
+  </p>  
+<% end %>
+
 
 <p>
   <%= render @post.categories %>
@@ -9,7 +12,7 @@
 <%= @post.description %>
 <hr>
 
-<% if current_user %>
+<% if logged_in? %>
   <div class="row">
     <div class="span8">
       <%= render 'shared/errors', object: @comment %>

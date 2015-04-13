@@ -1,0 +1,10 @@
+<%= render 'shared/content_title', title: "Profile : #{@user.username}" %>
+<div class="well">
+  <h5>Username : <%= @user.username %></h5>
+</div>
+
+<h3>All Posts</h3>
+<% @user.posts.each do |post| %>
+  <%= render 'posts/post', post: post %>
+<% end %>
+
