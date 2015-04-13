@@ -1,3 +1,6 @@
+<% if current_user %>
+  <h5>Hi, Welcome to Postit <%= current_user.username %></h5>
+<% end %>
 <%= render 'shared/content_title', title: 'All Posts' %>
 <%= render @posts %>
 
