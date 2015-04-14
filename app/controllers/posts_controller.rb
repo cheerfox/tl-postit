@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update]
-  before_action :require_user, except: [:index, :show]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
+  before_action :require_user, except: [:index, :show, :vote]
   def index
     @posts = Post.all
   end
@@ -33,6 +33,18 @@ class PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       render 'edit'
+    end
+  end
+
+  def vote
+    @vote = Vote.create(vote: params[:vote], voteable: @post, creator: current_user)
+    # binding.pry
+    if @vote.errors.any?
+      flash[:error] = 'Your vote is not counted!!'
+      redirect_to :back
+    else
+      flash[:notice] = "Your count is counted!!"
+      redirect_to :back
     end
   end
 
