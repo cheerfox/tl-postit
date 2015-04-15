@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :description, presence: true
 
-  def total_vote
+  def total_votes
     upvote - downvote
   end
 

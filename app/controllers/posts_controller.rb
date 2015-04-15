@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:index, :show]
   def index
-    @posts = Post.all
+    @posts = Post.all.sort_by{|x| x.total_votes}.reverse
   end
 
   def show
@@ -38,14 +38,12 @@ class PostsController < ApplicationController
 
   def vote
     @vote = Vote.create(vote: params[:vote], voteable: @post, creator: current_user)
-    # binding.pry
     if @vote.errors.any?
-      flash[:error] = 'Your vote is not counted!!'
-      redirect_to :back
+      flash[:error] = "You can only vote to a post once!!"
     else
-      flash[:notice] = "Your count is counted!!"
-      redirect_to :back
+      flash[:notice] = "Your count has been counted!!"
     end
+    redirect_to :back
   end
 
 
