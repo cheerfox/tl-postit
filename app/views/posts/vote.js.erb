@@ -1,6 +1,5 @@
-$('#post_<%= @post.id %>_vote').html(<%= @post.total_votes %>);
-<% if @post.errors.any? %>
-  $('#flash_error').html("You can only vote a post once");
+<% if @vote.valid? %>
+  $('#post_<%= @post.id %>_votes').html(<%= @post.total_votes %>);
 <% else %>
-  $('#flash_notice').html("Your voting is successful!!");
+  alert("You can only vote once!!");
 <% end %>
